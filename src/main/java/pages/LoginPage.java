@@ -21,11 +21,11 @@ public class LoginPage extends BasePage{
         driver.findElement(LOGIN_BUTTON).click();
     }
 
-    public void waitForPageOpened() {
+    public void waitForPageOpenedExample() {
         waitForElementLocated(BOT_LOGO, 10);
     }
 
-    public void typeTextInFrame() {
+    public void typeTextInFrames() {
         driver.switchTo().frame(driver.findElement(By.id("mce_0_ifr")));
         driver.findElement(By.id("tinymce")).sendKeys("asdsd");
         driver.switchTo().defaultContent();
