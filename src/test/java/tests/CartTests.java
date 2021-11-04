@@ -7,13 +7,13 @@ import org.testng.annotations.Test;
 
 public class CartTests extends BaseTest{
 
-    @Test
-    public void addProductToCartTest() {
+    @Test(dataProvider = "User data", dataProviderClass = TestDataProvider.class, retryAnalyzer = Retry.class)
+    public void addProductToCartTest(String username, String password, String productName, String expectedPrice) {
         loginPage.openPage()
-                 .login("standard_user", "secret_sauce")
-                 .addProductToCart("Sauce Labs Bolt T-Shirt");
+                 .login(username, password)
+                 .addProductToCart(productName);
         cartPage.openPage();
-        Assert.assertEquals(cartPage.getProductPrice("Sauce Labs Bolt T-Shirt"), "$15.99");
+        Assert.assertEquals(cartPage.getProductPrice(productName), expectedPrice);
     }
 
     @Test

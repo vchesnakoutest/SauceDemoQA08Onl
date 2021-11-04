@@ -5,11 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import pages.CartPage;
 import pages.LoginPage;
 import pages.LoginPageFactory;
 import pages.ProductsPage;
 
+@Listeners(TestListener.class)
 public class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
@@ -28,7 +30,7 @@ public class BaseTest {
         loginPageFactory = new LoginPageFactory(driver);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void closeDriver() {
         driver.quit();
     }
