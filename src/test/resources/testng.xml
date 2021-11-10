@@ -2,12 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="3" name="Test suite" parallel="classes">
     <test name="Tests">
-        <groups>
-            <run>
-                <include name="Smoke" />
-                <include name="Critical" />
-            </run>
-        </groups>
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Smoke" />-->
+<!--                <include name="Critical" />-->
+<!--            </run>-->
+<!--        </groups>-->
         <classes>
             <class name="tests.CartTests"/>
 <!--            <parameter name="password" value="1231314"></parameter>-->
