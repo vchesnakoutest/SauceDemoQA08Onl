@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.Waiters;
 
 public class LoginPageFactory extends BasePage{
 
@@ -21,14 +22,14 @@ public class LoginPageFactory extends BasePage{
     WebElement botLogo;
 
     public void login(String username, String password) {
-        waitForElementLocated(userNameInput, 10);
+        Waiters.waitForElementLocated(driver, userNameInput, 10);
         userNameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
     }
 
     public void waitForPageOpened() {
-        waitForElementLocated(botLogo, 10);
+        Waiters.waitForElementLocated(driver, botLogo, 10);
     }
 
 }

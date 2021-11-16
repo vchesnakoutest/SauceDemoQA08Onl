@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.Waiters;
 
 public class LoginPage extends BasePage{
 
@@ -15,7 +16,7 @@ public class LoginPage extends BasePage{
     private static final By BOT_LOGO = By.xpath("//*[@class='bot_column']");
 
     public ProductsPage login(String username, String password) {
-        waitForElementLocated(USERNAME_INPUT, 10);
+        Waiters.waitForElementLocated(driver, USERNAME_INPUT, 10);
         driver.findElement(USERNAME_INPUT).sendKeys(username);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
@@ -23,7 +24,7 @@ public class LoginPage extends BasePage{
     }
 
     public void waitForPageOpenedExample() {
-        waitForElementLocated(BOT_LOGO, 10);
+        Waiters.waitForElementLocated(driver, BOT_LOGO, 10);
     }
 
     public LoginPage openPage() {

@@ -9,8 +9,6 @@ public class CartPage extends HeaderPage{
         super(driver);
     }
 
-    private static final String CART_URL = "/cart.html";
-
     private static final String PRODUCT_PRICE = "//*[text()='%s']/ancestor::*[@class='cart_item']//*[@class='inventory_item_price']";
 
     public String getProductPrice(String productName) {
@@ -18,7 +16,7 @@ public class CartPage extends HeaderPage{
     }
 
     public CartPage openPage() {
-        openPage(BASE_URL + CART_URL);
+        openPage(CART_URL);
         return this;
     }
 }
