@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -8,11 +9,9 @@ import org.testng.annotations.Test;
 public class CartTests extends BaseTest{
 
     @Test(dataProvider = "User data", dataProviderClass = TestDataProvider.class, retryAnalyzer = Retry.class)
+    @Description("Add product to cart")
     public void addProductToCartTest(String username, String password, String productName, String expectedPrice) {
-        loginPage.openPage()
-                 .login(username, password)
-                 .addProductToCart(productName);
-        cartPage.openPage();
+        cartSteps.addProductToCartAndGoToCart(username, password, productName);
         Assert.assertEquals(cartPage.getProductPrice(productName), expectedPrice);
     }
 

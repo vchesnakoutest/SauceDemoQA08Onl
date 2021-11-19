@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.Waiters;
@@ -15,12 +16,18 @@ public class LoginPage extends BasePage{
     private static final By LOGIN_BUTTON = By.xpath("//*[@id='login-button']");
     private static final By BOT_LOGO = By.xpath("//*[@class='bot_column']");
 
+    @Step("Login as username: '{username}' and password: '{password}'")
     public ProductsPage login(String username, String password) {
         Waiters.waitForElementLocated(driver, USERNAME_INPUT, 10);
         driver.findElement(USERNAME_INPUT).sendKeys(username);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
-        driver.findElement(LOGIN_BUTTON).click();
+        clickLoginButton();
         return new ProductsPage(driver);
+    }
+
+    @Step("Click 'Login' button on Login page")
+    public void clickLoginButton() {
+        driver.findElement(LOGIN_BUTTON).click();
     }
 
     public void waitForPageOpenedExample() {
