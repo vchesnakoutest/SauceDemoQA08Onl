@@ -18,7 +18,7 @@ public class CartTests extends BaseTest{
     @Test
     public void addProductToCartWithPageFactoryTest() {
         loginPageFactory.openPage("https://www.saucedemo.com/");
-        loginPageFactory.login(System.getProperty("username"), System.getProperty("password"));
+        loginPageFactory.login(System.getenv("username"), System.getenv("password"));
         productsPage.addProductToCart("Sauce Labs Bolt T-Shirt");
         productsPage.openPage("https://www.saucedemo.com/cart.html");
         Assert.assertEquals(cartPage.getProductPrice("Sauce Labs Bolt T-Shirt"), "$15.99");

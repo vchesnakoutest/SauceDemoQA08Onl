@@ -24,7 +24,7 @@ jobs:
 
       - run:
           name: Running tests
-          command: mvn clean -Dbrowser=chrome -Dusername=standard_user -Dpassword=secret_sauce install
+          command: mvn clean -Dbrowser=chrome install
       - run:
           name: Generate allure report
           command: mvn allure:report
