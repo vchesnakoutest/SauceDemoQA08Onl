@@ -27,12 +27,14 @@ public class BaseTest {
 
     @BeforeMethod
     public void initTest(ITestContext context) {
-        if(System.getProperty("browser").equals("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        } else if (System.getProperty("browser").equals("edge")) {
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
+        if (System.getProperty("browser") != null) {
+            if (System.getProperty("browser").equals("chrome")) {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            } else if (System.getProperty("browser").equals("edge")) {
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+            }
         } else {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
