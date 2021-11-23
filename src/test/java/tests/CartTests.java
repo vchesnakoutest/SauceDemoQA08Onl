@@ -23,15 +23,4 @@ public class CartTests extends BaseTest{
         productsPage.openPage("https://www.saucedemo.com/cart.html");
         Assert.assertEquals(cartPage.getProductPrice("Sauce Labs Bolt T-Shirt"), "$15.99");
     }
-
-    @Test
-    public void demoWithoutPageFactoryTest() {
-        loginPageFactory.openPage("http://the-internet.herokuapp.com/add_remove_elements/");
-        WebElement addButtonElement = driver.findElement(By.xpath("//button[contains(.,'Add')]"));
-        addButtonElement.click();
-        WebElement deleteButtonElement = driver.findElement(By.xpath("//button[contains(.,'Delete')]"));
-        deleteButtonElement.click();
-        addButtonElement.click();
-        deleteButtonElement.click();
-    }
 }
