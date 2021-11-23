@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.PropertyReader;
 
 public class CartTests extends BaseTest{
 
@@ -18,7 +19,7 @@ public class CartTests extends BaseTest{
     @Test
     public void addProductToCartWithPageFactoryTest() {
         loginPageFactory.openPage("https://www.saucedemo.com/");
-        loginPageFactory.login(System.getenv("username"), System.getenv("password"));
+        loginPageFactory.login(System.getenv().getOrDefault("username", PropertyReader.getProperty("username")), System.getenv().getOrDefault("password", PropertyReader.getProperty("password")));
         productsPage.addProductToCart("Sauce Labs Bolt T-Shirt");
         productsPage.openPage("https://www.saucedemo.com/cart.html");
         Assert.assertEquals(cartPage.getProductPrice("Sauce Labs Bolt T-Shirt"), "$15.99");
