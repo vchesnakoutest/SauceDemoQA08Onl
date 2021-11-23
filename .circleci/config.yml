@@ -24,7 +24,7 @@ jobs:
 
       - run:
           name: Running tests
-          command: mvn clean install
+          command: mvn clean -Dbrowser=chrome test
       - run:
           name: Generate allure report
           command: mvn allure:report
