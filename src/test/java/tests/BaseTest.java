@@ -1,6 +1,7 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -15,6 +16,7 @@ import pages.ProductsPage;
 import steps.CartSteps;
 import steps.ProductSteps;
 
+@Log4j2
 @Listeners(TestListener.class)
 public class BaseTest {
     WebDriver driver;
@@ -31,14 +33,20 @@ public class BaseTest {
             if (System.getProperty("browser").equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
+                log.debug("Chrome browser is started!");
             } else if (System.getProperty("browser").equals("edge")) {
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
             }
         } else {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            try {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            } catch (Exception e) {
+                log.fatal("FATAL ERROR: Driver is not started!");
+            }
         }
+        log.debug("Browser is started in fullscreen mode.");
         driver.manage().window().maximize();
         String driverVariable = "driver";
         context.setAttribute(driverVariable, driver);

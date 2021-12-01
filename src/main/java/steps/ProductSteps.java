@@ -1,8 +1,10 @@
 package steps;
 
+import objects.Car;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.Matchers;
 
 public class ProductSteps {
 
@@ -19,5 +21,9 @@ public class ProductSteps {
                 .login(username, password)
                 .addProductToCart(productName);
         return this;
+    }
+
+    public boolean verifyObjects(Car car1, Car car2) {
+        return Matchers.verifyObjects(car1, car2);
     }
 }

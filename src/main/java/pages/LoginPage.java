@@ -1,10 +1,12 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.Waiters;
 
+@Log4j2
 public class LoginPage extends BasePage{
 
     public LoginPage(WebDriver driver) {
@@ -19,7 +21,10 @@ public class LoginPage extends BasePage{
     @Step("Login as username: '{username}' and password: '{password}'")
     public ProductsPage login(String username, String password) {
         Waiters.waitForElementLocated(driver, USERNAME_INPUT, 10);
+        log.info(String.format("Type text: '%s' into username input on Login page", username));
+        log.debug("Locator is: " + USERNAME_INPUT);
         driver.findElement(USERNAME_INPUT).sendKeys(username);
+        log.info(String.format("Type text: '%s' into password input on Login page", password));
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         clickLoginButton();
         return new ProductsPage(driver);
@@ -27,6 +32,7 @@ public class LoginPage extends BasePage{
 
     @Step("Click 'Login' button on Login page")
     public void clickLoginButton() {
+        log.info("Click 'Login' button.");
         driver.findElement(LOGIN_BUTTON).click();
     }
 
